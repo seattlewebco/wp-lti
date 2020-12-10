@@ -1,6 +1,6 @@
-sudo: false
-dist: trusty
+version: ~> 1.0
 
+dist: xenial
 language: php
 
 notifications:
@@ -16,29 +16,44 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-matrix:
+# Test main supported versions of PHP against latest WP.
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
+  - 8.0
+
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
+
+# Additional tests against stable PHP (min version is 7.0)
+# and code coverage report.
+jobs:
+  fast_finish: true
   include:
-    - php: 8.0
-      env: WP_VERSION=latest
-    - php: 7.4
-      env: WP_VERSION=latest
-    - php: 7.3
-      env: WP_VERSION=latest
-    - php: 7.2
-      env: WP_VERSION=latest
-    - php: 7.1
-      env: WP_VERSION=latest
-    - php: 7.0
-      env: WP_VERSION=latest
-    - php: 5.6
-      env: WP_VERSION=latest
-    - php: 5.6
-      env: WP_VERSION=trunk
-    - php: 5.6
-      env: WP_TRAVISCI=phpcs
-    - php: 5.3
-      env: WP_VERSION=latest
-      dist: precise
+  - name: "Core E2E Tests"
+    env: WP_VERSION=latest WP_MULTISITE=0
+    install:
+     - npm install
+     - composer install --no-dev
+    script:
+      - npm run build:prod
+  - name: "WP Nightly"
+    php: 7.4
+    env: WP_VERSION=nightly WP_MULTISITE=0
+  - name: "WP Latest - 1"
+    php: 7.2
+    env: WP_VERSION=5.4 WP_MULTISITE=0
+  - name: "WP Latest - 2"
+    php: 7.2
+    env: WP_VERSION=5.3 WP_MULTISITE=0
+  - name: "Code Standards"
+    php: 7.4
+    env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
+  - name: "Code Coverage"
+    php: 7.4
+    env: WP_VERSION=latest WP_MULTISITE=0 RUN_CODE_COVERAGE=1
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -69,3 +84,18 @@ script:
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       phpcs
     fi
+
+
+# Specifies that Travis should create builds for master and release branches and also tags.
+branches:
+  only:
+    - master
+
+# Composer 2.0.7 introduced a change that broke the jetpack autoloader in PHP 7.0 - 7.3.
+before_install:
+  - composer self-update 2.0.6
+
+# Git clone depth
+# By default Travis CI clones repositories to a depth of 50 commits. Using a depth of 1 makes this step a bit faster.
+git:
+  depth: 1
