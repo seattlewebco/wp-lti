@@ -7,6 +7,11 @@
 
 namespace SeattleWebCo\WP_LTI;
 
+/**
+ * Launch request endpoint.
+ *
+ * @return string
+ */
 function launch_request() {
 	if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
 		return;
