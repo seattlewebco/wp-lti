@@ -13,11 +13,21 @@
  * @package SeattleWebCo/WP-LTI
  */
 
+namespace SeattleWebCo\WP_LTI;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'WP_LTI_FILE', __FILE__ );
+define( 'WP_LTI_DIR', plugin_dir_path( __FILE__ ) );
+define( 'WP_LTI_URL', plugin_dir_url( __FILE__ ) );
+
 require_once 'vendor/autoload.php';
+
+require_once 'includes/helpers.php';
+require_once 'includes/endpoints.php';
+require_once 'includes/admin/settings.php';
 
 /**
  * Activation hook
@@ -39,4 +49,4 @@ function wp_lti_activation() {
 
 	flush_rewrite_rules();
 }
-register_activation_hook( __FILE__, 'wp_lti_activation' );
+register_activation_hook( __FILE__, __NAMESPACE__ . '\wp_lti_activation' );

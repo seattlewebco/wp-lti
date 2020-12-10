@@ -77,9 +77,6 @@ mix.version();
  */
 mix
 	.react( [
-		`${ devPath }/js/editor.jsx`,
-	], `${ devPath }/js/editor.js` )
-	.react( [
 		`${ devPath }/js/main.jsx`,
 	], `${ devPath }/js/main.js` );
 
@@ -111,8 +108,7 @@ mix
 				} ],
 			} ),
 		],
-	} )
-	.sass( `${ devPath }/scss/editor.scss`, `${ devPath }/css`, sassConfig );
+	} );
 
 /*
  * Add custom Webpack configuration.

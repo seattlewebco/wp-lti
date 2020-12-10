@@ -16,27 +16,25 @@
     "semantic-release-version-bump": "^1.4.1"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.10",
     "browser-sync": "^2.26.13",
     "browser-sync-webpack-plugin": "2.2.2",
-    "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.10",
     "eslint": "^5.12.0",
     "eslint-config-wordpress": "^2.0.0",
-    "gulp": "^3.9.1",
-    "laravel-mix": "^4.0.14",
-    "laravel-mix-svg-sprite": "^1.0.0",
+    "laravel-mix": "^5.0.9",
     "node-wp-i18n": "^1.2.2",
-    "postcss-preset-env": "^6.5.0",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^1.13.4",
     "prettier-stylelint": "^0.4.2",
     "rtlcss": "^2.5.0",
     "sass": "^1.16.0",
     "sass-loader": "^7.1.0",
-    "stylelint": "^9.9.0",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-config-wordpress": "^13.1.0",
-    "stylelint-order": "^0.8.1"
+    "stylelint": "^13.8.0",
+    "stylelint-config-recess-order": "^2.3.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-wordpress": "^17.0.0"
   },
   "rtlcssConfig": {
     "options": {
@@ -58,7 +56,7 @@
     "watch": "cross-env sync=1 NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "lint": "npm run lint:styles && npm run lint:scripts && npm run lint:php",
     "lint:styles": "cross-env stylelint './assets/scss/**/*.scss' --syntax scss",
-    "lint:scripts": "cross-env eslint './assets/js/**/*.js'",
+    "lint:scripts": "cross-env eslint './assets/js/*.js'",
     "lint:php": "cross-env ./vendor/bin/phpcs . --runtime-set testVersion 5.6- -s",
     "i18n": "npm run i18n:textdomain && npm run i18n:pot",
     "i18n:textdomain": "npx wpi18n addtextdomain --exclude=vendor,tests,node_modules,assets",

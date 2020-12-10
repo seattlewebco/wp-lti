@@ -1,0 +1,38 @@
+# Copyright (C) 2020 Seattle Web Co.
+# This file is distributed under the same license as the WordPress LTI package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress LTI 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-lti\n"
+"POT-Creation-Date: 2020-12-10 00:42:55+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: node-wp-i18n 1.2.3\n"
+
+#: wp-lti.php:29
+msgid "This plugin requires a minimum PHP version of 7.1.0"
+msgstr ""
+
+#: wp-lti.php:30
+msgid "Plugin activation error"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WordPress LTI"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "WordPress Learning Tools Interoperability Integration"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Seattle Web Co."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://seattlewebco.com"
+msgstr ""
