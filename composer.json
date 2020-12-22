@@ -19,7 +19,7 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "6.*"
+        "league/oauth2-server": "^8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",

@@ -13,13 +13,17 @@ namespace SeattleWebCo\WP_LTI;
  * @return string
  */
 function launch_request() {
-	if ( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
+	if ( isset( $_REQUEST['ltilogin'] ) ) {
 		return;
-	}
+    }
+
+    var_dump( $_SERVER['REQUEST_METHOD'] );
+    var_dump( $_REQUEST );
+    exit;
 
 	parse_str( file_get_contents( 'php://input' ), $request );
 
-	$request = wp_parse_args(
+	$request = wp_parse_args( $request,
 		array(
 			'context_id'                             => '',
 			'context_label'                          => '',
@@ -76,8 +80,7 @@ function launch_request() {
 			'tool_consumer_instance_url'             => '',
 			'user_id'                                => '',
 			'user_image'                             => '',
-		),
-		$request
+		)
 	);
 
 	var_dump( $request );
